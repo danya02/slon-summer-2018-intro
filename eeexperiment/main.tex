@@ -1,0 +1,342 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{tikz}
+\usepackage[margin=1mm]{geometry}
+\title{A Method of Experimentally Getting a Value for the Drag Coefficient}
+\author{Generalov Danya}
+\usetikzlibrary{calc}
+\begin{document}
+    The drag coefficient is a value inherent in a body moving through a fluid determining the force that counteracts its movement.
+    The drag force is defined as:\\
+
+
+    \begin{equation}
+        \label{1}
+        F = C_x \frac{\rho v^2}{2}S_x
+    \end{equation}
+
+    Where:
+    \begin{itemize}
+        \item $F$ is the drag force;
+        \item $C_x$ is the drag coefficient - what we are looking for;
+        \item $\rho$ is the air density;
+        \item $S_x$ is the frontal area of the object;
+        \item $v$ is the object velocity.
+    \end{itemize}
+
+    To calculate the drag coefficient, we need to have the object velocity constant.
+    Newton's first law states that an object's velocity is constant if no force is applied to it.
+    Therefore, there must be a force counteracting the drag force.\\
+
+    A force that is always present around us is the gravitational pull of the Earth.
+    The formula for the force of gravity near the surface of the Earth is:
+    \begin{equation}
+        \label{2}
+        F = mg
+    \end{equation}
+
+    Where:
+    \begin{itemize}
+        \item $F$ is the gravitational force;
+        \item $m$ is the mass of the object;
+        \item $g$ is the gravitational acceleration, equal to $9.80665 \frac{m}{s^2}$
+    \end{itemize}
+
+    Since our object is falling at a constant velocity, combining~\ref{1} and~\ref{2} gives us this formula:\\
+
+    \[C_x \frac{\rho v^2}{2}S_x = mg\]
+
+    \ldots from which follows:
+    \begin{equation}
+        \label{3}
+        C_x = \frac{S_x \rho v^2 mg}{2}
+    \end{equation}
+
+    To experimentally find the drag coefficient, therefore, we need an experimental setup where the variables are controlled or monitored.
+    For example, if we take an umbrella, which has an aerodynamic shape, open it, then throw it from a tall building whilst pointing a high-resolution, high-framerate camera at the building, then we would be able to measure the fall velocity.
+    The reason we would take an umbrella is that its aerodynamic shape would help prevent tumbling, which will change the frontal velocity considerably.
+    The mass of the umbrella we can measure by using a scale, and the surface area can be calculated using some geometric trick that I can't be bothered to look up.\\
+    \frame{
+    \begin{tikzpicture}
+        \draw (0,0) -- (0,10) -- (5,10) -- (5,0) -- cycle;
+        \draw (4.7,12) circle [radius=0.3];
+        \draw (4.7,11.7) -- (4.7,11.0) -- (4.5,10) --(4.7,11.0) -- (4.9,10);
+        \draw (4.7,11.6) -- (5.6,11.58);
+        \draw (4.7,11.53) -- (5.6,11.52);
+
+        \draw[thick] (5.6,11.58) -- (5.6,10.5);
+
+        \def\centerarc[#1](#2)(#3:#4:#5)% Syntax: [draw options] (center) (initial angle:final angle:radius)
+        { \draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5); }
+        \centerarc[thick](5.6,11)(-180:0:0.5)
+        \draw (4.5,8.5)--(4.5,9.5)--(3.5,9.5)--(3.5,8.5)--cycle;
+        \draw (4.5,7)--(4.5,8)--(3.5,8)--(3.5,7)--cycle;
+
+        \draw (4.5,5.5)--(4.5,6.5)--(3.5,6.5)--(3.5,5.5)--cycle;
+        \draw (4.5,4)--(4.5,5)--(3.5,5)--(3.5,4)--cycle;
+
+        \draw (4.5,3.5)--(4.5,2.5)--(3.5,2.5)--(3.5,3.5)--cycle;
+        \draw (4.5,2)--(4.5,1)--(3.5,1)--(3.5,2)--cycle;
+
+
+        %---
+        \draw (2.5,8.5)--(2.5,9.5)--(3.5,9.5)--(3.5,8.5)--cycle;
+        \draw (2.5,7)--(2.5,8)--(3.5,8)--(3.5,7)--cycle;
+
+        \draw (2.5,5.5)--(2.5,6.5)--(3.5,6.5)--(3.5,5.5)--cycle;
+        \draw (2.5,4)--(2.5,5)--(3.5,5)--(3.5,4)--cycle;
+
+        \draw (2.5,3.5)--(2.5,2.5)--(3.5,2.5)--(3.5,3.5)--cycle;
+        \draw (2.5,2)--(2.5,1)--(3.5,1)--(3.5,2)--cycle;
+
+        %---
+        \draw (0.5,8.5)--(0.5,9.5)--(1.5,9.5)--(1.5,8.5)--cycle;
+        \draw (0.5,7)--(0.5,8)--(1.5,8)--(1.5,7)--cycle;
+
+        \draw (0.5,5.5)--(0.5,6.5)--(1.5,6.5)--(1.5,5.5)--cycle;
+        \draw (0.5,4)--(0.5,5)--(1.5,5)--(1.5,4)--cycle;
+
+        \draw (0.5,3.5)--(0.5,2.5)--(1.5,2.5)--(1.5,3.5)--cycle;
+        \draw (0.5,2)--(0.5,1)--(1.5,1)--(1.5,2)--cycle;
+
+
+
+        \draw (15,1) -- (15,1.2) -- (15.4,1.2) -- (15.4,1)--cycle;
+        \draw (15.2,1) -- (15,0);
+        \draw (15.2,1) -- (15.4,0);
+        \draw (14.8,1.3)--(15,1.3)--(15,0.9)--(14.8,0.9)--cycle;
+        \draw[dashed] (14.8,1.2) -- (5,10);
+        \draw[dashed] (14.8,1) -- (5,0);
+
+        \draw (2,12) circle [radius=0.3];
+        \draw (2,11.7) -- (2,11.0) -- (1.8,10) --(2,11.0) -- (2.2,10);
+        \draw (2,11.6) -- (2.5,11.4)--(2.26,11.83);
+        \draw (2,11.53) -- (1.9,11.1)--(2,11.0);
+        \node at (2,13) {What are you doing?};
+        \draw (1.85,12.3)--(1,12.9);
+        \node at (5.9,12.7) {\textbf{\textit{FOR SCIENCE!}}};
+        \draw(4.85,12.3) -- (5.9,12.5);
+    \end{tikzpicture}} \\
+
+
+    At first, the drag force will not be sufficient to compensate gravity, and so the umbrella will accelerate downward\ldots\\
+    \frame{\begin{tikzpicture}
+               \def\centerarc[#1](#2)(#3:#4:#5)% Syntax: [draw options] (center) (initial angle:final angle:radius)
+               { \draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5); }
+               \draw (0,0) -- (0,10) -- (5,10) -- (5,0) -- cycle;
+               \draw (4.7,12) circle [radius=0.3];
+               \draw (4.7,11.7) -- (4.7,11.0) -- (4.5,10) --(4.7,11.0) -- (4.9,10);
+               \draw (4.7,11.6) -- (5.1,11.3) -- (4.7,11);
+               \draw (4.7,11.6) -- (4.3,11.34)--(4.7,11);
+
+               \draw[thick] (5.6,9.58) -- (5.6,8.5);
+
+               \centerarc[thick](5.6,9)(-180:0:0.5)
+               \draw (4.5,8.5)--(4.5,9.5)--(3.5,9.5)--(3.5,8.5)--cycle;
+               \draw (4.5,7)--(4.5,8)--(3.5,8)--(3.5,7)--cycle;
+
+               \draw (4.5,5.5)--(4.5,6.5)--(3.5,6.5)--(3.5,5.5)--cycle;
+               \draw (4.5,4)--(4.5,5)--(3.5,5)--(3.5,4)--cycle;
+
+               \draw (4.5,3.5)--(4.5,2.5)--(3.5,2.5)--(3.5,3.5)--cycle;
+               \draw (4.5,2)--(4.5,1)--(3.5,1)--(3.5,2)--cycle;
+
+
+               %---
+               \draw (2.5,8.5)--(2.5,9.5)--(3.5,9.5)--(3.5,8.5)--cycle;
+               \draw (2.5,7)--(2.5,8)--(3.5,8)--(3.5,7)--cycle;
+
+               \draw (2.5,5.5)--(2.5,6.5)--(3.5,6.5)--(3.5,5.5)--cycle;
+               \draw (2.5,4)--(2.5,5)--(3.5,5)--(3.5,4)--cycle;
+
+               \draw (2.5,3.5)--(2.5,2.5)--(3.5,2.5)--(3.5,3.5)--cycle;
+               \draw (2.5,2)--(2.5,1)--(3.5,1)--(3.5,2)--cycle;
+
+               %---
+               \draw (0.5,8.5)--(0.5,9.5)--(1.5,9.5)--(1.5,8.5)--cycle;
+               \draw (0.5,7)--(0.5,8)--(1.5,8)--(1.5,7)--cycle;
+
+               \draw (0.5,5.5)--(0.5,6.5)--(1.5,6.5)--(1.5,5.5)--cycle;
+               \draw (0.5,4)--(0.5,5)--(1.5,5)--(1.5,4)--cycle;
+
+               \draw (0.5,3.5)--(0.5,2.5)--(1.5,2.5)--(1.5,3.5)--cycle;
+               \draw (0.5,2)--(0.5,1)--(1.5,1)--(1.5,2)--cycle;
+
+
+
+               \draw (15,1) -- (15,1.2) -- (15.4,1.2) -- (15.4,1)--cycle;
+               \draw (15.2,1) -- (15,0);
+               \draw (15.2,1) -- (15.4,0);
+               \draw (14.8,1.3)--(15,1.3)--(15,0.9)--(14.8,0.9)--cycle;
+               \draw[dashed] (14.8,1.2) -- (5,10);
+               \draw[dashed] (14.8,1) -- (5,0);
+
+               \draw (2,12) circle [radius=0.3];
+               \draw (2,11.7) -- (2,11.0) -- (1.8,10) --(2,11.0) -- (2.2,10);
+               \draw (2,11.6) -- (2.7,11.5);
+               \draw (2,11.53) -- (2.72,11.4);
+
+               \node at (2,13.5) {That was our last umbrella!};
+               \draw (1.85,12.3)--(1,13.2);
+               \node at (5.9,12.7) {\textit{TOTALLY} worth it.};
+               \draw(4.85,12.3) -- (5.9,12.5);
+
+               \draw[->,red,very thick] (5.6,8) -- (5.6,6);
+               \node at (6,7) {$F_g$};
+
+               \draw[->,blue,very thick] (5.6,10) -- (5.6,11);
+               \node at (6,10.5) {$F_x$};
+    \end{tikzpicture}}\\
+    \ldots but at some point, the forces will cancel each other out, and the velocity will be constant.\\
+    \frame{\begin{tikzpicture}
+               \draw (0,0) -- (0,10) -- (5,10) -- (5,0) -- cycle;
+               \draw (4.7,12) circle [radius=0.3];
+               \draw (4.7,11.7) -- (4.7,11.0) -- (4.5,10) --(4.7,11.0) -- (4.9,10);
+               \draw (4.7,11.6) -- (5.1,11.3) -- (4.7,11);
+               \draw (4.7,11.6) -- (4.3,11.34)--(4.45,11.85);
+
+               \draw[thick] (5.6,7.58) -- (5.6,6.5);
+
+               \def\centerarc[#1](#2)(#3:#4:#5)% Syntax: [draw options] (center) (initial angle:final angle:radius)
+               { \draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5); }
+               \centerarc[thick](5.6,7)(-180:0:0.5)
+               \draw (4.5,8.5)--(4.5,9.5)--(3.5,9.5)--(3.5,8.5)--cycle;
+               \draw (4.5,7)--(4.5,8)--(3.5,8)--(3.5,7)--cycle;
+
+               \draw (4.5,5.5)--(4.5,6.5)--(3.5,6.5)--(3.5,5.5)--cycle;
+               \draw (4.5,4)--(4.5,5)--(3.5,5)--(3.5,4)--cycle;
+
+               \draw (4.5,3.5)--(4.5,2.5)--(3.5,2.5)--(3.5,3.5)--cycle;
+               \draw (4.5,2)--(4.5,1)--(3.5,1)--(3.5,2)--cycle;
+
+
+               %---
+               \draw (2.5,8.5)--(2.5,9.5)--(3.5,9.5)--(3.5,8.5)--cycle;
+               \draw (2.5,7)--(2.5,8)--(3.5,8)--(3.5,7)--cycle;
+
+               \draw (2.5,5.5)--(2.5,6.5)--(3.5,6.5)--(3.5,5.5)--cycle;
+               \draw (2.5,4)--(2.5,5)--(3.5,5)--(3.5,4)--cycle;
+
+               \draw (2.5,3.5)--(2.5,2.5)--(3.5,2.5)--(3.5,3.5)--cycle;
+               \draw (2.5,2)--(2.5,1)--(3.5,1)--(3.5,2)--cycle;
+
+               %---
+               \draw (0.5,8.5)--(0.5,9.5)--(1.5,9.5)--(1.5,8.5)--cycle;
+               \draw (0.5,7)--(0.5,8)--(1.5,8)--(1.5,7)--cycle;
+
+               \draw (0.5,5.5)--(0.5,6.5)--(1.5,6.5)--(1.5,5.5)--cycle;
+               \draw (0.5,4)--(0.5,5)--(1.5,5)--(1.5,4)--cycle;
+
+               \draw (0.5,3.5)--(0.5,2.5)--(1.5,2.5)--(1.5,3.5)--cycle;
+               \draw (0.5,2)--(0.5,1)--(1.5,1)--(1.5,2)--cycle;
+
+
+
+               \draw (15,1) -- (15,1.2) -- (15.4,1.2) -- (15.4,1)--cycle;
+               \draw (15.2,1) -- (15,0);
+               \draw (15.2,1) -- (15.4,0);
+               \draw (14.8,1.3)--(15,1.3)--(15,0.9)--(14.8,0.9)--cycle;
+               \draw[dashed] (14.8,1.2) -- (5,10);
+               \draw[dashed] (14.8,1) -- (5,0);
+
+               \draw (2,12) circle [radius=0.3];
+               \draw (2,11.7) -- (2,11.0) -- (1.8,10) --(2,11.0) -- (2.2,10);
+               \draw (2,11.6) -- (2.4,11);
+               \draw (2,11.53) -- (1.8,11.35)--(2,11.0);
+
+               \node at (2,13.5) {Why are you doing this, again?};
+               \draw (1.85,12.3)--(1,13.2);
+               \node at (5.9,12.7) {Well\ldots};
+               \draw(4.85,12.3) -- (5.9,12.5);
+
+               \draw[->,red,very thick] (5.6,6) -- (5.6,4);
+               \node at (6,5) {$F_g$};
+
+               \draw[->,blue,very thick] (5.6,8) -- (5.6,10);
+               \node at (6,8.5) {$F_x$};
+    \end{tikzpicture}}\\
+    At that point, we will measure the distance it has traveled in a period of time, as approximated by the distance between windows, and that will be its velocity.\\
+    \frame{\begin{tikzpicture}
+               \def\centerarc[#1](#2)(#3:#4:#5)% Syntax: [draw options] (center) (initial angle:final angle:radius)
+               { \draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5); }
+               \draw (0,0) -- (0,10) -- (5,10) -- (5,0) -- cycle;
+               \draw (4.7,12) circle [radius=0.3];
+               \draw (4.7,11.7) -- (4.7,11.0) -- (4.5,10) --(4.7,11.0) -- (4.9,10);
+               \draw (4.7,11.6) -- (5.1,11.3) -- (5.4,11.6);
+               \draw (4.7,11.6) -- (4.3,11.3)--(4,11.6);
+
+
+               \draw (4.5,8.5)--(4.5,9.5)--(3.5,9.5)--(3.5,8.5)--cycle;
+               \draw (4.5,7)--(4.5,8)--(3.5,8)--(3.5,7)--cycle;
+
+               \draw (4.5,5.5)--(4.5,6.5)--(3.5,6.5)--(3.5,5.5)--cycle;
+               \draw (4.5,4)--(4.5,5)--(3.5,5)--(3.5,4)--cycle;
+
+               \draw (4.5,3.5)--(4.5,2.5)--(3.5,2.5)--(3.5,3.5)--cycle;
+               \draw (4.5,2)--(4.5,1)--(3.5,1)--(3.5,2)--cycle;
+
+
+               %---
+               \draw (2.5,8.5)--(2.5,9.5)--(3.5,9.5)--(3.5,8.5)--cycle;
+               \draw (2.5,7)--(2.5,8)--(3.5,8)--(3.5,7)--cycle;
+
+               \draw (2.5,5.5)--(2.5,6.5)--(3.5,6.5)--(3.5,5.5)--cycle;
+               \draw (2.5,4)--(2.5,5)--(3.5,5)--(3.5,4)--cycle;
+
+               \draw (2.5,3.5)--(2.5,2.5)--(3.5,2.5)--(3.5,3.5)--cycle;
+               \draw (2.5,2)--(2.5,1)--(3.5,1)--(3.5,2)--cycle;
+
+               %---
+               \draw (0.5,8.5)--(0.5,9.5)--(1.5,9.5)--(1.5,8.5)--cycle;
+               \draw (0.5,7)--(0.5,8)--(1.5,8)--(1.5,7)--cycle;
+
+               \draw (0.5,5.5)--(0.5,6.5)--(1.5,6.5)--(1.5,5.5)--cycle;
+               \draw (0.5,4)--(0.5,5)--(1.5,5)--(1.5,4)--cycle;
+
+               \draw (0.5,3.5)--(0.5,2.5)--(1.5,2.5)--(1.5,3.5)--cycle;
+               \draw (0.5,2)--(0.5,1)--(1.5,1)--(1.5,2)--cycle;
+
+
+
+               \draw (15,1) -- (15,1.2) -- (15.4,1.2) -- (15.4,1)--cycle;
+               \draw (15.2,1) -- (15,0);
+               \draw (15.2,1) -- (15.4,0);
+               \draw (14.8,1.3)--(15,1.3)--(15,0.9)--(14.8,0.9)--cycle;
+               \draw[dashed] (14.8,1.2) -- (5,10);
+               \draw[dashed] (14.8,1) -- (5,0);
+
+               \draw (2.2,11.85) circle [radius=0.3];
+               \draw (2,11.7) -- (2,11.0) -- (1.8,10) --(2,11.0) -- (2.2,10);
+               \draw (2,11.6) -- (2.2,11)--(2.3,11.6);
+               \draw (2,11.53) -- (2.15,11.1)--(2.32,11.6);
+
+               \node at (2,13.1) {\ldots};
+               \draw (2,12.3)--(2,12.9);
+               \node at (5.9,13.2) {Because I can?};
+               \draw(4.85,12.3) -- (5.9,13);
+
+               \draw[dashed] (5.6,7.58) -- (5.6,6.5);
+               \centerarc[dashed](5.6,7)(-180:0:0.5)
+
+               \draw[thick] (5.6,6.58) -- (5.6,5.5);
+               \centerarc[thick](5.6,6)(-180:0:0.5)
+               \draw[very thick,red] (5.6,6.5)--(1.8,6.5);
+               \draw[very thick,red] (5.6,5.5)--(1.8,5.5);
+
+               \draw[thick,<->,blue] (2,6.5)--(2,5.5);
+               \node at (1.8,6) {$d$};
+               \node at (6.6,6) {$t_1$};
+               \node at (6.6,7) {$t_0$};
+               \node at (6,5) {$v=\frac{d}{\Delta t}$};
+
+    \end{tikzpicture}}\\
+
+    Ideally, of course, one would be dropping a sphere, as even if it tumbles, the frontal surface area is constant, but an umbrella is a reasonable approximation commonly found at home. \\
+
+    Thus, we have been able to calculate the drag coefficient of an umbrella.
+    Not sure why someone would want this, but there you go.
+\end{document}
